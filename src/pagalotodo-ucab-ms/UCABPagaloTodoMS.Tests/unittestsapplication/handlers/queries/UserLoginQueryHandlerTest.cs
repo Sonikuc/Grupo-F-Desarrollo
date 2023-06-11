@@ -27,35 +27,7 @@ namespace UCABPagaloTodoMS.Tests.UnitTestsApplication.Handlers.Queries
             _loggerMock = new Mock<ILogger<UserLoginQueryHandler>>();
             _handler = new UserLoginQueryHandler(_contextMock.Object, _loggerMock.Object);
             _contextMock.SetupDbContextData();
-        }/*
-<<<<<<< HEAD
-
-      
-=======
->>>>>>> ExceptionsFolder
-      /*  [Fact(DisplayName ="Login Correct")]
-        public async Task HandleAsync_UserExiste_PasswordCorrecta()
-        {
-            // Arrange
-            var request = new UserLoginRequest
-            {
-                UserName = "SedetC",
-                Password = "se170311"
-            };
-            var user = new UserLoginQuery(request);
-            var expectedResponse = BuildDataContextFaker.userLoginResponse();
-
-            // Act
-            var response = await _handler.HandleAsync(user);
-
-            // Assert
-            Assert.NotNull(response);
-            Assert.Equal(expectedResponse.UserName, response.UserName);
-            Assert.Equal(expectedResponse.Password, response.Password);
-            Assert.True(response.Success);
-            Assert.Equal("Inicio de sesión exitoso", response.Message);
-            Assert.Equal(expectedResponse.Id, response.Id);
-        }*/
+        }
         [Fact(DisplayName = "Login Incorrect - Error Password")]
         public async Task HandleAsync_WrongPassword()
         {
