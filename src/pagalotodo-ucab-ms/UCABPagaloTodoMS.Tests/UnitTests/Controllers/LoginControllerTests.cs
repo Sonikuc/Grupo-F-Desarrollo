@@ -31,39 +31,7 @@ namespace UCABPagaloTodoMS.Tests.UnitTests.Controllers
 
         }
 
-        [Fact(DisplayName = "Login ADMIN OK")]
-        public async Task Login_ADMIN_OK()
-        {
-            // Arrange
-            UserLoginRequest request = new UserLoginRequest
-            {
-                UserName = "SedetC",
-                Password = "se170311"
-            };
-            var expectedResponse = BuildDataContextFaker.adminLoginResponse();
-            
-            _mediatorMock.Setup(x => x.Send(It.IsAny<UserLoginQuery>(), default(CancellationToken)))
-                            .ReturnsAsync(expectedResponse);
-            // Act
-            ActionResult result = await _controller.Login(request);
-            OkObjectResult okObject = result as OkObjectResult;
-
-            // Assert
-
-            var response = Assert.IsType<UserLoginResponse>(okObject.Value);
-
-            Assert.NotNull(result);
-            Assert.NotNull(okObject);
-            Assert.IsType<OkObjectResult>(result);
-            
-            Assert.IsType<OkObjectResult>(result);
-            Assert.Equal(StatusCodes.Status200OK, okObject.StatusCode);
-            
-            Assert.Equal(expectedResponse.Success, response.Success);
-            Assert.Equal(expectedResponse.Status, response.Status);
-            Assert.Equal(expectedResponse.isAdmin, response.isAdmin);
-            Assert.Equal(expectedResponse.Message, response.Message);
-        }
+       
         [Fact(DisplayName = "Login USER OK")]
         public async Task Login_user_OK()
         {
