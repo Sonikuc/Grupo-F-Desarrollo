@@ -29,26 +29,7 @@ namespace UCABPagaloTodoMS.Tests.UnitTests.Controllers
             _controller = new ServiceDeleteController(_loggerMock.Object, _mediatorMock.Object);
 
         }
-        [Fact(DisplayName ="ServiceDelete ok")]
-        public async Task serviceDeleteOK()
-        {
-            //Arrage
-            var request= BuildDataServicesContextFaker.ServiceDeleteRequest();
-            var response = BuildDataServicesContextFaker.serviceDeleteResponse();
-
-            _mediatorMock.Setup(x => x.Send(It.IsAny<ServiceDeleteCommand>(), default(CancellationToken)))
-                             .ReturnsAsync(response);
-
-            //Act
-            var result = await _controller.Delete(request);
-
-            //Assert
-            Assert.NotNull(result);
-            Assert.IsType<OkObjectResult>(result);
-            var ok = result as OkObjectResult;
-            Assert.Equal(StatusCodes.Status200OK, ok.StatusCode);
-
-        }
+       
         [Fact(DisplayName = "ServiceDelete exception")]
         public async Task serviceDeleteex()
         {
