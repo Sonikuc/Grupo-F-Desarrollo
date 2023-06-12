@@ -35,7 +35,25 @@ namespace UCABPagaloTodoMS.Tests.UnitTests.Controllers
 
         }
 
-        
+        [Fact(DisplayName ="AddService ok resturn 200")]
+        public async Task AddServiceOK()
+        {
+            // Arrange
+            var request = BuildDataContextFaker.addServiceRequest();
+            var expectedresponse = Guid.NewGuid();
+            _mediatorMock.Setup(x => x.Send(It.IsAny<AddServiceCommand>(), default(CancellationToken)))
+             .ReturnsAsync(expectedresponse);
+
+            // Act
+            ActionResult result = await _controller.AddService(request);
+            OkObjectResult okObject = result as OkObjectResult;
+
+            // Assert      
+            Assert.Equal(StatusCodes.Status200OK, okObject.StatusCode);
+            var addServiceResponse = Assert.IsType<Guid>(okObject.Value);
+           
+           
+        }
         [Fact]
         public async Task AddService_throwException()
         {
